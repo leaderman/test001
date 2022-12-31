@@ -1,1 +1,23 @@
-/* pages/audio/audio.wxss */
+.audio {
+  display: flex;
+  flex-direction: column;
+}
+
+.src {
+  margin-top: 20px;
+}
+
+.slider {
+  margin-top: 20px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 20px;
+}
+
+.button {
+  margin-top: 15px;
+}

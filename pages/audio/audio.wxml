@@ -1,0 +1,22 @@
+<view class="page">
+  <view class="audio">
+    <view class="src">
+      <text>{{src}}</text>
+    </view>
+
+    <view class="slider">
+      <slider wx:if="{{duration > 0}}" max="{{duration}}" value="{{currentTime}}" show-value="{{true}}" bindchange="slide"></slider>
+    </view>
+
+    <view class="buttons">
+      <view class="button">
+        <button type="primary" bindtap="play" disabled="{{playing}}">播放</button>
+      </view>
+
+      <view class="button">
+        <button type="primary" bindtap="pause" disabled="{{!playing}}">暂停</button>
+      </view>
+    </view>
+  </view>
+
+</view>
