@@ -1,2 +1,5 @@
-<view class="container">
+<view class="page">
+  <mp-cells>
+    <mp-cell value="音频播放" link="{{true}}" bindtap="navigate" data-url="/pages/audio/audio"></mp-cell>
+  </mp-cells>
 </view>
