@@ -1,1 +1,9 @@
-/* pages/speech/speech.wxss */
+.text {
+  padding: 10px;
+}
+
+.buttions {
+  display: flex;
+
+  margin-top: 50px;
+}

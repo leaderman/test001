@@ -1,2 +1,73 @@
-<!--pages/speech/speech.wxml-->
-<text>pages/speech/speech.wxml</text>
+<view class="page">
+  <view class="text">
+    <textarea class="weui-textarea" placeholder-class="weui-input__placeholder" placeholder="请输入文字" style="height: 150px;" bindinput="watchText"></textarea>
+    <view aria-role="option" title="字数统计" class="weui-textarea-counter">{{numberOfText}}/{{maxNumberOfText}}</view>
+  </view>
+
+  <view class="options">
+    <mp-cells>
+      <picker value="{{langOp}}" range="{{util.aliases(langs)}}" bindchange="watchLang">
+        <mp-cell value="语言" link="{{true}}" footer="{{langs[langOp].alias}}"></mp-cell>
+      </picker>
+
+      <picker value="{{genderOp}}" range="{{util.aliases(genders)}}" bindchange="watchGender">
+        <mp-cell value="性别" link="{{true}}" footer="{{ genders[genderOp].alias}}"></mp-cell>
+      </picker>
+
+      <picker value="{{voiceOp}}" range="{{util.voices(lang, gender, voices)}}" bindchange="watchVoice">
+        <mp-cell value="声音" link="{{true}}" footer="{{ voices[lang][gender][voiceOp].alias}}"></mp-cell>
+      </picker>
+
+      <view class="weui-cell weui-cell_active">
+        <view class="weui-cell__hd">
+          <view class="weui-label">语速</view>
+        </view>
+        <view class="weui-cell__bd">
+          <slider min="{{0.5}}" max="{{2}}" step="{{0.1}}" value="{{rate}}" block-size="{{12}}" bindchange="watchRate"></slider>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_active">
+        <view class="weui-cell__hd">
+          <view class="weui-label">音调</view>
+        </view>
+        <view class="weui-cell__bd">
+          <slider min="{{0.5}}" max="{{1.5}}" step="{{0.1}}" value="{{pitch}}" block-size="{{12}}" bindchange="watchPitch"></slider>
+        </view>
+      </view>
+    </mp-cells>
+  </view>
+
+  <view class="buttions">
+    <button class="mini-btn" type="primary" size="mini">语音合成</button>
+    <button class="mini-btn" type="primary" size="mini" disabled="{{true}}">语音播放</button>
+    <button class="mini-btn" type="primary" size="mini" disabled="{{true}}">语音下载</button>
+  </view>
+</view>
+
+<wxs module="util">
+  // 转换别名
+  var aliases = function (array) {
+    return array.map(function (element) {
+      return element.alias
+    })
+  }
+
+  // 联动语言和性别，动态计算声音列表
+  var voices = function (lang, gender, voices) {
+    var vs = voices[lang][gender]
+
+    var aliases = []
+
+    for (var index = 0; index < vs.length; index++) {
+      aliases.push(vs[index].alias)
+    }
+
+    return aliases
+  }
+
+  module.exports = {
+    aliases: aliases,
+    voices: voices
+  }
+</wxs>
