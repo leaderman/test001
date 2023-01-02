@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/audio/audio"
+    "pages/audio/audio",
+    "pages/speech/speech"
   ],
   "window": {
     "backgroundTextStyle": "light",
